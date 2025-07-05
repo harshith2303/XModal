@@ -49,7 +49,9 @@ export default function App() {
 
   return (
     <div className="modal">
-      <button onClick={() => setShowModal(true)}>Open Form</button>
+      {!showModal && (
+        <button onClick={() => setShowModal(true)}>Open Form</button>
+      )}
       {showModal && (
         <div className="modal-content" ref={modalRef}>
           <form onSubmit={handleSubmit}>
