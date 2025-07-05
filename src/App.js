@@ -33,7 +33,7 @@ export default function App() {
     }
 
     if (!/^\d{10}$/.test(phone)) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      alert("**Invalid phone number. Please enter a 10-digit phone number.");
       return;
     }
 
