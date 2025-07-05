@@ -49,6 +49,7 @@ export default function App() {
 
   return (
     <div className="modal">
+      <h1>User Details Form</h1>
       {!showModal && (
         <button onClick={() => setShowModal(true)}>Open Form</button>
       )}
