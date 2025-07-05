@@ -32,13 +32,13 @@ function App() {
     }
 
     if (!/^\d{10}$/.test(phone)) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      alert("**Invalid phone number. Please enter a 10-digit phone number.");
       return;
     }
 
     const today = new Date().toISOString().split('T')[0];
     if (dob > today) {
-      alert("Invalid date of birth. Please select a valid date.");
+      alert("Invalid phone number. Please enter a 10-digit phone number.**");
       return;
     }
 
