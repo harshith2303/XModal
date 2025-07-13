@@ -8,9 +8,11 @@ function App() {
   };
 
   const closeHandler = (e) => {
-    console.log(e.target.className);
-    if (e.target.className === "modal-content") setIsOpen(false);
-  };
+  console.log(e.target.className);
+  if (e.target.className !== "modal-content") {
+    setIsOpen(false);
+  }
+};
 
   const submitHandler = (e) => {
     e.preventDefault();
