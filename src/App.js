@@ -3,6 +3,13 @@ import "./App.css";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    dob: "",
+    phone: "",
+  });
+
   const modalRef = useRef();
 
   useEffect(() => {
@@ -15,15 +22,29 @@ export default function App() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [showModal]);
 
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const dob = document.getElementById("dob").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+    const { username, email, dob, phone } = formData;
 
-    if (!username || !email || !dob || !phone) {
-      alert("All fields are mandatory.");
+    if (!username) {
+      alert("Username is required.");
+      return;
+    }
+    if (!email) {
+      alert("Email is required.");
+      return;
+    }
+    if (!dob) {
+      alert("Date of birth is required.");
+      return;
+    }
+    if (!phone) {
+      alert("Phone number is required.");
       return;
     }
 
@@ -33,7 +54,7 @@ export default function App() {
     }
 
     if (!/^\d{10}$/.test(phone)) {
-      alert("**Invalid phone number. Please enter a 10-digit phone number.");
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
       return;
     }
 
@@ -49,9 +70,7 @@ export default function App() {
 
   return (
     <div className="modal">
-    
       {!showModal && (
-        
         <>
           <h1>User Details Form</h1>
           <button onClick={() => setShowModal(true)}>Open Form</button>
@@ -62,19 +81,19 @@ export default function App() {
           <form onSubmit={handleSubmit}>
             <div>
               <label>Username:</label>
-              <input id="username" type="text" />
+              <input id="username" type="text" value={formData.username} onChange={handleChange} />
             </div>
             <div>
               <label>Email:</label>
-              <input id="email" type="email" />
+              <input id="email" type="email" value={formData.email} onChange={handleChange} />
             </div>
             <div>
               <label>Date of Birth:</label>
-              <input id="dob" type="date" />
+              <input id="dob" type="date" value={formData.dob} onChange={handleChange} />
             </div>
             <div>
               <label>Phone Number:</label>
-              <input id="phone" type="tel" />
+              <input id="phone" type="tel" value={formData.phone} onChange={handleChange} />
             </div>
             <button type="submit" className="submit-button">
               Submit
